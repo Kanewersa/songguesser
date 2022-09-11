@@ -1,6 +1,10 @@
 class AnswersController < ApplicationController
   def create
     song = Song.where('date >= ?', DateTime.now).order('date').first
+    if song.nil?
+      redirect_to root_path, alert: 'Błąd. Brak ustawionej piosenki.'
+      return
+    end
 
     song_title = format_title(song.title)
     answer_title = format_title(params[:answer][:body])
