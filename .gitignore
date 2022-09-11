@@ -38,3 +38,13 @@
 !/app/assets/builds/.keep
 
 /node_modules
+tmp/
+tmp/**/*
+vendor/
+vendor/**/*
+log/
+log/**/*
+development.sqlite
+identifier.sqlite
+.idea/
+.idea/**/*
