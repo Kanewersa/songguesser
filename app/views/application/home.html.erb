@@ -1,0 +1,17 @@
+<%= render partial: 'animation', song_available: @song_available %>
+
+<% if @song_available %>
+  <div class="song-input">
+    <div class="grow"></div>
+    <h3>Nazwa piosenki:</h3>
+    <%= form_with model: @answer do |form| %>
+      <%= form.text_field :body %><br/>
+      <%= form.submit 'Wyślij odpowiedź' %>
+    <% end %>
+    <div class="grow"></div>
+  </div>
+<% else %>
+  <div id="timer" class="timer" style="display: none;">
+    <span id="init-seconds"><%= @seconds.to_i %></span>seconds
+  </div>
+<% end %>
