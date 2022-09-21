@@ -1,7 +1,10 @@
-<%= render partial: 'animation', song_available: @song_available %>
+<%= render partial: 'application/navbar' %>
+<div class="content">
+  <%= render partial: 'animation', song_available: @song_available %>
+</div>
 
 <% if @song_available %>
-  <div class="song-input">
+  <div id="song-input" class="song-input">
     <div class="grow"></div>
     <h3>Nazwa piosenki:</h3>
     <%= form_with model: @answer do |form| %>

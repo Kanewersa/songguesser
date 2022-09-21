@@ -1,0 +1,7 @@
+<%= render partial: 'application/navbar' %>
+
+<%= form_with url: "/contact", method: :post, class: 'contact-form' do |form| %>
+  <h1>Formularz kontaktowy</h1>
+  <%= form.text_area :message, class: 'contact-input' %><br>
+  <%= form.submit "Send message", class: 'contact-button' %>
+<% end %>

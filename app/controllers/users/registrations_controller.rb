@@ -14,8 +14,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     codes = AccountCode.where(code: params[:user][:account_code], used: false) # []
     result = codes.any?
 
-    binding.pry
-
     if result
       super
       code = codes.first # the same shit -> codes[0]
@@ -24,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       code.user = resource # resource is a user
       code.save!
     else
-      redirect_to new_user_registration_path, alert: 'Wrong code.'
+      redirect_to new_user_registration_path, alert: 'Zły kod.'
     end
   end
 

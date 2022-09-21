@@ -1,0 +1,25 @@
+<nav>
+  <ul>
+    <% if user_signed_in? %>
+      <li class="<% current_page?(root_path) ? 'selected' : '' %>">
+        <%= link_to 'Timer', root_path %>
+      </li>
+      <li>
+        <%= link_to 'Bony', user_vouchers_path(current_user.id) %>
+      </li>
+      <li>
+        <%= link_to 'Info', info_path %>
+      </li>
+      <li>
+        <%= link_to 'Kontakt', contact_path %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to 'Zaloguj się', new_user_session_path %>
+      </li>
+      <li>
+        <%= link_to 'Stwórz konto', new_user_registration_path %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

@@ -1,6 +1,10 @@
 class SongsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_admin!
   before_action :set_song, only: %i[ show edit update destroy ]
+
+  def availability
+    render json: { available: Song.current_song.present? }
+  end
 
   # GET /songs or /songs.json
   def index
@@ -50,6 +54,10 @@ class SongsController < ApplicationController
 
   # DELETE /songs/1 or /songs/1.json
   def destroy
+    if @song.can_destroy?
+      return redirect_to @song, alert: 'Nie można usunąć tej piosenki.'
+    end
+
     @song.destroy
 
     respond_to do |format|
@@ -59,13 +67,14 @@ class SongsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = Song.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def song_params
-      params.require(:song).permit(:title, :author, :date, :duration)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_song
+    @song = Song.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def song_params
+    params.require(:song).permit(:title, :author, :date, :duration)
+  end
 end

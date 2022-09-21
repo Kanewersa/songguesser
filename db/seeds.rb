@@ -9,3 +9,7 @@
 100.times do
   AccountCode.create!(code: rand(10_000_000..99_999_999), used: false, usage_date: nil, user: nil)
 end
+
+10.times do
+  VoucherTemplate.create!(title: Faker::Games::ElderScrolls.weapon, chance: rand(10))
+end

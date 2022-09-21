@@ -1,0 +1,16 @@
+<div class="box">
+  <h1>Voucher templates</h1>
+
+  <%= link_to "Nowy rodzaj bonu", new_voucher_template_path %>
+
+  <div id="voucher_templates">
+  <hr>
+    <% @voucher_templates.each do |voucher_template| %>
+      <%= render voucher_template %>
+      <p>
+        <%= link_to "Szczegóły", voucher_template %>
+      </p>
+      <hr>
+    <% end %>
+  </div>
+</div>

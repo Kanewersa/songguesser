@@ -1,0 +1,12 @@
+<div class="voucher">
+  <div class="status <%= voucher.available? ? 'available' : 'used' %>">
+  </div>
+  <div class="content">
+    <h3><%= voucher.title %></h3>
+    <% unless voucher.available? %>
+      <p>Użyty: <%= voucher.used_date&.to_formatted_s(:db) %></p>
+    <% else %>
+      <%= button_to 'Użyj bonu', use_voucher_path(voucher), form: {data: {turbo_confirm: 'Jeteś pewien?'}} %>
+    <% end %>
+  </div>
+</div>

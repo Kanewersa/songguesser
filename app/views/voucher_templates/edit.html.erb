@@ -1,0 +1,14 @@
+<div class="box">
+  <h1>Edytowanie rodzaju bonu</h1>
+
+  <%= render "form", voucher_template: @voucher_template %>
+
+  <br>
+
+  <div>
+    <%= link_to "Szczegóły", @voucher_template %>
+    <br>
+    <%= link_to "Powrót do listy rodzajów bonów", voucher_templates_path %>
+  </div>
+
+</div>

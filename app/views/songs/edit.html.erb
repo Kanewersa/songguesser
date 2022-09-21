@@ -1,10 +1,13 @@
-<h1>Editing song</h1>
+<div class="box">
+  <h1>Edytuj piosenkę</h1>
 
-<%= render "form", song: @song %>
+  <%= render "form", song: @song %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this song", @song %> |
-  <%= link_to "Back to songs", songs_path %>
+  <div>
+    <%= link_to "Pokaż szczegóły", @song %> |
+    <%= link_to "Wróć do listy piosenek", songs_path %>
+  </div>
+
 </div>

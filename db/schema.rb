@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_10_174200) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_18_160724) do
   create_table "account_codes", force: :cascade do |t|
     t.integer "code"
     t.boolean "used"
@@ -49,8 +49,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_174200) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
+    t.string "name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "voucher_templates", force: :cascade do |t|
+    t.string "title"
+    t.integer "chance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "vouchers", force: :cascade do |t|

@@ -1,0 +1,11 @@
+<%= render partial: 'application/navbar' %>
+<div class="vouchers">
+  <h1>Ostatnio zużyte bony</h1>
+  <hr>
+  <% @vouchers.each do |voucher| %>
+    <%= render partial: '/vouchers/voucher', locals: { voucher: voucher } %>
+  <% end %>
+  <% unless @vouchers.any? %>
+  <p>Brak zużytych bonów</p>
+  <% end %>
+</div>

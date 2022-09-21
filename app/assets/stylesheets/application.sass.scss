@@ -1,13 +1,138 @@
 @import "animation.sass.scss";
 
+nav {
+  z-index: 1000;
+  background: #ffc286;
+  margin-bottom: 0;
+  color: white;
+  box-shadow: 0 0 8px 0 rgba(66, 68, 90, 1);
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+
+    li {
+      flex-grow: 1;
+      padding: 1em 0 1em 0;
+
+      a {
+        color: white;
+        width: 100%;
+        height: 100%;
+        font-size: 1.2em;
+        text-decoration: none;
+      }
+
+      &.selected {
+        //background: #d38d41;
+
+        //border-bottom: 1px solid black;
+        box-shadow: inset 0px -4px 0px 0px #fda548;
+
+      }
+    }
+  }
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-input {
+  width: 80%;
+  height: 300px;
+}
+.contact-button {
+  border: none;
+  padding: 6px 12px;
+  background: #ffc286;
+  color: white;
+  border-radius: 6px;
+}
+.vouchers {
+  text-align: center;
+  overflow: auto;
+
+  h1 {
+    margin-bottom: 8px;
+  }
+
+  hr {
+    margin: 0 auto 20px auto;
+    width: 160px;
+  }
+
+  .voucher {
+    position: relative;
+    width: 320px;
+    height: 140px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    //-webkit-box-shadow: 2px 2px 8px 0px rgba(66, 68, 90, 1);
+    //-moz-box-shadow: 2px 2px 8px 0px rgba(66, 68, 90, 1);
+    box-shadow: 1px 1px 4px 0px rgba(66, 68, 90, 0.4);
+
+    &::before {
+      content: '';
+      position: absolute;
+      background-color: #fafafa;
+      z-index: 100;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      transform: translateX(-20px) translateY(50px);
+    }
+
+    .status {
+      width: 30%;
+      border-radius: 10px 0 0 10px;
+
+      &.available {
+        background-color: #61ea34;
+      }
+
+      &.used {
+        background-color: gray;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      place-content: space-evenly;
+      align-items: center;
+      width: 100%;
+
+      button {
+        width: 120px;
+        padding: 10px 20px;
+        border-radius: 6px;
+        border: 0;
+        color: white;
+        background-color: #ffc286;
+        box-shadow: 2px 2px 4px 0 rgba(66, 68, 90, 0.3);
+      }
+
+      h3 {
+        margin: 0.25em 0 0 0;
+      }
+    }
+  }
+}
 .song-input {
   position: absolute;
   display: flex;
   flex-direction: column;
   left: 50%;
+  height: 660px;
   transform: translate(-50%, 0);
-  height: 600px;
   text-align: center;
+  z-index: 10;
 
   .grow {
     flex-grow: 1;
@@ -50,6 +175,8 @@
   overflow: hidden;
 }
 .popup {
+  z-index: 9999;
+  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -242,11 +369,26 @@ input:focus ~ .login__bar:after {
   width: 50%
 }
 
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  text-align: center;
+}
+
 @media (min-width: 620px) {
   #animation {
     width: 100vh;
   }
-  body {
+  .song-input {
+    height: 100%;
+    font-size: 2em;
+  }
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
     -webkit-box-align: center;
     -ms-flex-align: center;
     justify-content: center;
@@ -263,21 +405,22 @@ input:focus ~ .login__bar:after {
   .login__form {
     max-width: 400px;
     height: 520px;
-    box-shadow: 2px 2px 12px 0px rgba(66, 68, 90, 1);
+    box-shadow: 2px 2px 12px 0 rgba(66, 68, 90, 1);
     align-self: center;
   }
   .login__form.registration {
     height: 700px;
   }
   .login__title {
-    position: relative
+    position: relative;
   }
   .login__footer {
-    text-align: center
+    text-align: center;
+    transform: translateY(30px);
   }
   .login__footer .login__button {
     bottom: initial;
     position: initial;
-    width: 320px
+    width: 320px;
   }
 }

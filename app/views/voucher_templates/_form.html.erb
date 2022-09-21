@@ -1,0 +1,28 @@
+<%= form_with(model: voucher_template) do |form| %>
+  <% if voucher_template.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(voucher_template.errors.count, "error") %> prohibited this voucher_template from being saved:</h2>
+
+      <ul>
+        <% voucher_template.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :chance, style: "display: block" %>
+    <%= form.number_field :chance %>
+  </div>
+
+  <div>
+    <br>
+    <%= form.submit 'Aktualizuj' %>
+  </div>
+<% end %>

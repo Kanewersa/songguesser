@@ -1,9 +1,24 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import jQuery from "jquery";
+
+window.$ = window.jQuery = jQuery;
+
+$.wait = function (ms) {
+    let defer = $.Deferred();
+    setTimeout(function () {
+        defer.resolve();
+    }, ms);
+    return defer;
+};
 
 const loadAnimation = () => {
     const calculateTime = () => {
+        if (secondsDifference <= 0) {
+            location.reload();
+        }
+
         let seconds = secondsDifference;
         let minutes = Math.floor(seconds / 60);
         let hours = Math.floor(minutes / 60);
@@ -36,7 +51,13 @@ const loadAnimation = () => {
         secondsDifference -= 1
     }
 
-    let secondsDifference = document.getElementById('init-seconds').innerText;
+    let initSeconds = document.getElementById('init-seconds');
+
+    if (!initSeconds) {
+        return;
+    }
+
+    let secondsDifference = initSeconds.innerText;
 
     let days_1 = document.getElementById('days');
     let minutes_1 = document.getElementById('minutes-1');
@@ -51,8 +72,42 @@ const loadAnimation = () => {
     calculateTime();
 }
 
-let animation = document.getElementById('animation');
-
-if (animation) {
-    loadAnimation();
+const checkSongAvailability = () => {
+    $.ajax({
+        url: '/song_availability',
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        },
+        data: '',
+        success: (response) => {
+            if (!response['available']) {
+                let url = window.location.href;
+                url += '?finished=true';
+                window.location.href = url;
+            }
+        }
+    });
 }
+
+$(document).on('turbo:load', () => {
+    let animation = document.getElementById('animation');
+
+    if (animation) {
+        loadAnimation();
+    }
+
+    let popup = $('#popup');
+
+    if (popup) {
+        $.wait(4000).then(() => {
+            popup.fadeOut(1000);
+        });
+    }
+
+    let songInput = document.getElementById('song-input');
+
+    if (songInput) {
+        setInterval(checkSongAvailability, 3000)
+    }
+})

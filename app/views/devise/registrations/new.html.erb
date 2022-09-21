@@ -1,33 +1,40 @@
-<%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: 'login__form registration'}, data: { turbo: false } do |f| %>
-  <header class="login__header">
-    <h1 class="login__title">SongGuesser 🎶</h1>
-    <h3 class="login__subtitle">Stwórz konto</h3>
-  </header>
-  <main class="login__main">
-    <div class="login__group">
-      <%= f.email_field :email, class: 'login__input', type: 'text', required: true %>
-      <label class="login__label">Email </label>
-      <div class="login__bar"></div>
-    </div>
-    <div class="login__group">
-      <%= f.number_field :account_code, class: 'login__input', type: 'text', required: true %>
-      <label class="login__label">Kod </label>
-      <div class="login__bar"></div>
-    </div>
-    <div class="login__group">
-      <%= f.password_field :password, class: 'login__input', required: true %>
-      <label class="login__label">Hasło </label>
-      <div class="login__bar"></div>
-    </div>
-    <div class="login__group">
-      <%= f.password_field :password_confirmation, class: 'login__input', required: true %>
-      <label class="login__label">Potwierdź hasło </label>
-      <div class="login__bar"></div>
-    </div>
-    <p class="login__terms">Masz już konto? <%= link_to 'Zaloguj się tutaj!', new_user_session_path %></p>
-    <!--    <p class="login__terms">Nie pamiętasz hasła? <%#= link_to 'Zresetuj je tu.', new_user_password_path %></p>-->
-  </main>
-  <footer class="login__footer">
-    <%= f.submit 'Stwórz konto', class: 'login__button' %>
-  </footer>
-<% end %>
+<div class="container box">
+  <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: 'login__form registration'}, data: { turbo: false } do |f| %>
+    <header class="login__header">
+      <h1 class="login__title">SongGuesser 🎶</h1>
+      <h3 class="login__subtitle">Stwórz konto</h3>
+    </header>
+    <main class="login__main">
+      <div class="login__group">
+        <%= f.email_field :email, class: 'login__input', type: 'text', required: true %>
+        <label class="login__label">Email </label>
+        <div class="login__bar"></div>
+      </div>
+      <div class="login__group">
+        <%= f.number_field :account_code, class: 'login__input', type: 'text', required: true %>
+        <label class="login__label">Kod </label>
+        <div class="login__bar"></div>
+      </div>
+      <div class="login__group">
+        <%= f.password_field :password, class: 'login__input', required: true %>
+        <label class="login__label">Hasło </label>
+        <div class="login__bar"></div>
+      </div>
+      <div class="login__group">
+        <%= f.password_field :password_confirmation, class: 'login__input', required: true %>
+        <label class="login__label">Potwierdź hasło </label>
+        <div class="login__bar"></div>
+      </div>
+      <div class="login__group">
+        <%= f.text_field :name, class: 'login__input', type: 'text', required: true %>
+        <label class="login__label">Imię </label>
+        <div class="login__bar"></div>
+      </div>
+      <p class="login__terms">Masz już konto? <%= link_to 'Zaloguj się tutaj!', new_user_session_path %></p>
+      <!--    <p class="login__terms">Nie pamiętasz hasła? <%#= link_to 'Zresetuj je tu.', new_user_password_path %></p>-->
+    </main>
+    <footer class="login__footer">
+      <%= f.submit 'Stwórz konto', class: 'login__button' %>
+    </footer>
+  <% end %>
+</div>

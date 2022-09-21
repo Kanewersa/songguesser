@@ -1,0 +1,12 @@
+<div class="box">
+  <%= render @voucher_template %>
+  <div>
+    <%= link_to "Edytuj ten typ bonu", edit_voucher_template_path(@voucher_template) %>
+    <br>
+
+    <%= link_to "Powrót do listy bonów", voucher_templates_path %>
+    <br>
+    <%= button_to "Usuń ten rodzaj bonu", @voucher_template, method: :delete %>
+  </div>
+
+</div>

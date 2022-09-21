@@ -8,23 +8,21 @@
   <%= favicon_link_tag asset_path('favicon.svg') %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
-  <%#= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 </head>
 
 <body>
 <% if notice %>
-  <div class="popup notice">
+  <div id="popup" class="popup notice">
     <p><%= notice %></p>
     <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
   </div>
 <% end %>
 <% if alert %>
-  <div class="popup alert">
+  <div id="popup" class="popup alert">
     <p><%= alert %></p>
     <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
   </div>
 <% end %>
-
 <%= yield %>
 </body>
 </html>
