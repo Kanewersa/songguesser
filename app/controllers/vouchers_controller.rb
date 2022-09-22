@@ -1,4 +1,6 @@
 class VouchersController < ApplicationController
+  before_action :authenticate_user!
+
   def user_vouchers
     unless params[:id] == current_user.id.to_s || current_user.admin
       redirect_to user_vouchers_path(current_user.id)
