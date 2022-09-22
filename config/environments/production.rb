@@ -3,8 +3,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   config.hosts.clear
 
-  config.assets.digest = false
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
