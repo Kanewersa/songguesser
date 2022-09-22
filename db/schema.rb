@@ -11,11 +11,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_09_18_160724) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "account_codes", force: :cascade do |t|
     t.integer "code"
     t.boolean "used"
     t.datetime "usage_date"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_account_codes_on_user_id"
@@ -23,8 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_160724) do
 
   create_table "answers", force: :cascade do |t|
     t.string "body"
-    t.integer "user_id", null: false
-    t.integer "song_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "song_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "correct"
@@ -65,8 +68,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_160724) do
   create_table "vouchers", force: :cascade do |t|
     t.string "title"
     t.datetime "used_date"
-    t.integer "user_id", null: false
-    t.integer "song_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "song_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["song_id"], name: "index_vouchers_on_song_id"

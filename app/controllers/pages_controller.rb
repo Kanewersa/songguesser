@@ -2,9 +2,9 @@ class PagesController < ApplicationController
   before_action :authenticate_admin!, only: [:admin]
 
   def home
-    return redirect_to used_vouchers_path unless user_signed_in?
+    return if verify_voucher_templates!
 
-    verify_voucher_templates!
+    return redirect_to used_vouchers_path unless user_signed_in?
 
     # Display notice if event has just finished
     if params[:finished].present?
@@ -56,7 +56,7 @@ class PagesController < ApplicationController
   private
 
   def verify_voucher_templates!
-    return if VoucherTemplate.any?
+    return nil if VoucherTemplate.any?
 
     redirect_to error_path(error: 'Could not find any Voucher Templates.')
   end
