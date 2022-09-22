@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
+    authenticate_user!
+
     is_admin = user_signed_in? ? current_user.admin : false
 
     raise ActionController::RoutingError.new('Not Found') unless is_admin
-
-    authenticate_user!
   end
 end
